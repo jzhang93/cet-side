@@ -1,0 +1,114 @@
+{% extends 'cet/template.html' %}
+{% block content %}
+<div id="contents" style="padding: 0px; background: #edeae5; min-height: 100%;">
+	
+	<div id="profile_header_container">
+		<div id="profile_header">
+			<div id="profile_thumbnail"><img class="img_scaled_wh" src="{{company.get_company_thumbnail_url}}" /></div>
+			<div id="profile_info">
+				<div id="profile_name">{{company.company_name}}</div>
+				<div id="profile_follower">{{c_follower_count}} Followers</div>
+			</div>
+			<div id="profile_toolbox">
+				<div id="profile_follow" class="profile_toolbox_item" style="width: 30px; height: 30px; padding: 15px;"><img class="img_scaled" src="{{STATIC_URL}}assets/icons/follow.svg" /></div>
+				<div id="profile_follow_check"><img class="img_scaled" src="{{STATIC_URL}}assets/icons/check.svg" /></div>
+			</div>
+		</div>
+	</div>
+	
+	<div id="dashboard_contents">
+		<div id="dashboard_profile_header" class="dashboard_profile_item dashboard_profile_header_company">
+			<div id="dashboard_profile_about_wrapper">
+				<div id="dashboard_profile_about_icon"><img class="img_scaled" src="{{STATIC_URL}}assets/icons/company.svg" /></div>
+				<div id="dashboard_profile_about_content">
+					<div id="dashboard_profile_about_header">About <div id="dashboard_profile_about_company">{{company.company_name}}</div></div>
+					{% if c_editable %}
+					<div id="dashboard_profile_about_edit">Edit</div>
+					{% endif %}
+					<div class="clear"></div>
+					
+					<div id="dashboard_profile_about" style="display: block;">
+						<div id="dashboard_profile_about_description" data-original="{{company.company_description}}">{{company.company_description}}</div>
+						<div id="dashboard_profile_social">
+							<div class="dashboard_profile_social_item" id="dashboard_profile_social_facebook">
+								<a href="{{company.company_facebook}}"><div class="dashboard_profile_social_item_link"{% if company.company_facebook %} style="display: block;"{% endif %}><img class="img_scaled" src="{{STATIC_URL}}assets/icons/facebook.svg" /></div></a>
+								<div class="dashboard_profile_social_inputs_item">
+									<input type="text" id="dashboard_profile_social_input_facebook" class="dashboard_profile_social_input" placeholder="Enter the company's Facebook URL" data-original="{{company.company_facebook}}" value="{{company.company_facebook}}" />
+								</div>
+							</div>
+							<div class="dashboard_profile_social_item" id="dashboard_profile_social_website">
+								<a href="{{company.company_website}}"><div class="dashboard_profile_social_item_link"{% if company.company_website %} style="display: block;"{% endif %}><img class="img_scaled" src="{{STATIC_URL}}assets/icons/website.svg" /></div></a>
+								<div class="dashboard_profile_social_inputs_item">
+									<input type="text" id="dashboard_profile_social_input_website" class="dashboard_profile_social_input dashboard_profile_social_input_website" placeholder="Enter the company's Website URL" data-original="{{company.company_website}}" value="{{company.company_website}}" />
+								</div>
+							</div>
+							<div class="clear"></div>
+						</div>
+					</div>
+				</div>
+				<div class="clear"></div>
+				<div class="dashboard_profile_about_tags">
+					<div class="dashboard_profile_about_tags_caption">Tags</div>
+					{% if company.get_tags_as_list.count == 0 %}
+						<div id="dashboard_profile_about_tags_none">This company did not add any tags yet</div>
+					{% endif %}
+					{% for tag in company.get_tags_as_list %}
+						<div class="dashboard_profile_about_tags_item">{{tag.companytag_tag}}</div>
+					{% endfor %}
+					<form id="dashboard_profile_about_tags_form">
+						<input id="dashboard_profile_about_tags_input" type="text" placeholder="Add a Tag..." />
+					</form>
+				</div>
+				<div class="dashboard_profile_about_action">
+					<div id="dashboard_profile_about_update" class="dashboard_profile_about_action_item dashboard_profile_about_update_company">
+						<div class="dashboard_profile_about_action_icon"><img class="img_scaled" src="{{STATIC_URL}}assets/icons/check.svg" /></div>
+						<div class="dashboard_profile_about_action_caption">Update</div>
+						<div class="clear"></div>
+					</div>
+					<div id="dashboard_profile_about_cancel" class="dashboard_profile_about_action_item dashboard_profile_about_cancel_company">
+						<div class="dashboard_profile_about_action_icon"><img class="img_scaled" src="{{STATIC_URL}}assets/icons/back.svg" /></div>
+						<div class="dashboard_profile_about_action_caption">Cancel</div>
+						<div class="clear"></div>
+					</div>
+				</div>
+				<div id="dashboard_profile_about_form">
+					<input id="dashboard_profile_about_input_company" type="hidden" value="{{company.company_name}}" />
+					<input id="dashboard_profile_about_input_description" type="hidden" value="{{company.company_description}}" />
+					<input id="dashboard_profile_about_input_facebook" type="hidden" value="{{company.company_facebook}}" />
+					<input id="dashboard_profile_about_input_website" type="hidden" value="{{company.company_website}}" />
+					<input id="dashboard_profile_about_input_tags" type="hidden" value="{% for tag in company.get_tags_as_list %}{{tag.companytag_tag}};{% endfor %}" data-original="{% for tag in company.get_tags_as_list %}{{tag.companytag_tag}};{% endfor %}" />
+				</div>
+			</div>
+		</div>
+		
+
+		<div class="dashboard_profile_item" style="background-color: #edeae5;">
+			<div class="dashboard_profile_header">
+				<div class="dashboard_profile_header_icon" style="width: 60px; padding: 15px 0px;"><img class="img_scaled" src="{{STATIC_URL}}assets/icons/job_brown.svg" /></div>
+				<div class="dashboard_profile_header_title">Team</div>
+				{%if c_editable%}
+			
+				<div id="dashboard_profile_addbox_team" class="dashboard_profile_addbox">
+					<div class="dashboard_profile_addbox_icon"><img class="img_scaled" src="{{STATIC_URL}}assets/icons/add.svg" /></div>
+					<div class="dashboard_profile_addbox_text">Add a Team Member</div>
+					<div class="clear"></div>
+				</div>
+
+				{%endif%}
+				<div class="clear"></div>
+			</div>
+			
+			{% if company.get_members_as_list.count == 0 %}
+				<div class="dashboard_profile_nocontent">This company did not enter any team information.</div>
+			{% endif %}
+			
+			<div id="dashboard_profile_box_container_team" class="dashboard_profile_box_container">
+			{%for member in company.get_members_as_list%}
+				{%include "components/profile_team.html"%}
+			{% endfor %}
+			</div>
+			
+		</div>
+	</div>
+</div>
+{% endblock content %}
