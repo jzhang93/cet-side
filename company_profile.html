@@ -4,7 +4,15 @@
 	
 	<div id="profile_header_container">
 		<div id="profile_header">
-			<div id="profile_thumbnail"><img class="img_scaled_wh" src="{{company.get_company_thumbnail_url}}" /></div>
+			<!-- Andy's edits below -->
+			<div id="profile_thumbnail">
+				<img class="img_scaled_wh" src="{{company.get_company_thumbnail_url}}" />
+				<div id="menu_user_editprofilepic">
+					<input id="menu_user_editprofilepic_upload" type="file" onchange="edit_companyprofilepic(this);" />
+					<img class="img_scaled" src="{{STATIC_URL}}assets/icons/upload.svg" />
+				</div>
+			</div>
+			<!-- Andy's edits end -->
 			<div id="profile_info">
 				<div id="profile_name">{{company.company_name}}</div>
 				<div id="profile_follower">{{c_follower_count}} Followers</div>
@@ -80,13 +88,13 @@
 				</div>
 			</div>
 		</div>
-		
 
+<!-- 		Jeffrey's section; starting with Team -->
 		<div class="dashboard_profile_item" style="background-color: #edeae5;">
 			<div class="dashboard_profile_header">
-				<div class="dashboard_profile_header_icon" style="width: 60px; padding: 15px 0px;"><img class="img_scaled" src="{{STATIC_URL}}assets/icons/job_brown.svg" /></div>
+				<div class="dashboard_profile_header_icon" style="width: 60px; padding: 15px 0px;"><img class="img_scaled" src="{{STATIC_URL}}assets/icons/connect_dark.svg" /></div>
 				<div class="dashboard_profile_header_title">Team</div>
-				{%if c_editable%}
+<!-- 				{%if c_editable%}
 			
 				<div id="dashboard_profile_addbox_team" class="dashboard_profile_addbox">
 					<div class="dashboard_profile_addbox_icon"><img class="img_scaled" src="{{STATIC_URL}}assets/icons/add.svg" /></div>
@@ -94,7 +102,8 @@
 					<div class="clear"></div>
 				</div>
 
-				{%endif%}
+				{%endif%} -->
+
 				<div class="clear"></div>
 			</div>
 			
@@ -103,12 +112,171 @@
 			{% endif %}
 			
 			<div id="dashboard_profile_box_container_team" class="dashboard_profile_box_container">
-			{%for member in company.get_members_as_list%}
-				{%include "components/profile_team.html"%}
-			{% endfor %}
+
+				<div class="about_ourteam_box" style="width: 230px; height: auto;">
+					<a href="http://funginstitute.berkeley.edu/people/ken-singer" target="_blank">
+						<div class="about_madeby_content_item_photo"><img class="img_scaled_wh" src="{{STATIC_URL}}assets/thumbnails/ken.png" style="margin-left: 15px;"/></div>
+						<div class="about_ourteam_name">Ken Singer</div>
+						<div class="about_ourteam_position">Managing Director</div>
+						<div class="about_ourteam_description">Ken is a serial entrepreneur, technology executive, university lecturer, and director/advisor to numerous startups in the US and Europe. A 14-year veteran of the mobile industry (enterprise software and digital advertising), Ken has been creating mobile solutions since cellphones first connected to the Internet at a whopping 28 kbps. Since then, he has founded or co-founded five companies in the mobility space.</div>
+					</a>
+				</div>
+
+				<div class="about_ourteam_box" style="width: 230px; height: auto;">
+					<a href="http://funginstitute.berkeley.edu/people/ken-singer" target="_blank">
+						<div class="about_madeby_content_item_photo"><img class="img_scaled_wh" src="{{STATIC_URL}}assets/thumbnails/ken.png" style="margin-left: 15px;"/></div>
+						<div class="about_ourteam_name">Ken Singer</div>
+						<div class="about_ourteam_position">Managing Director</div>
+						<div class="about_ourteam_description">Ken is a serial entrepreneur, technology executive, university lecturer, and director/advisor to numerous startups in the US and Europe. A 14-year veteran of the mobile industry (enterprise software and digital advertising), Ken has been creating mobile solutions since cellphones first connected to the Internet at a whopping 28 kbps. Since then, he has founded or co-founded five companies in the mobility space.</div>
+					</a>
+				</div>
+
+				<div class="about_ourteam_box" style="width: 230px; height: auto;">
+					<a href="http://funginstitute.berkeley.edu/people/ken-singer" target="_blank">
+						<div class="about_madeby_content_item_photo"><img class="img_scaled_wh" src="{{STATIC_URL}}assets/thumbnails/ken.png" style="margin-left: 15px;"/></div>
+						<div class="about_ourteam_name">Ken Singer</div>
+						<div class="about_ourteam_position">Managing Director</div>
+						<div class="about_ourteam_description">Ken is a serial entrepreneur, technology executive, university lecturer, and director/advisor to numerous startups in the US and Europe. A 14-year veteran of the mobile industry (enterprise software and digital advertising), Ken has been creating mobile solutions since cellphones first connected to the Internet at a whopping 28 kbps. Since then, he has founded or co-founded five companies in the mobility space. Ken is a serial entrepreneur, technology executive, university lecturer, and director/advisor to numerous startups in the US and Europe.</div>
+					</a>
+				</div>
+
+				<div class="about_ourteam_box" style="width: 230px; height: auto;">
+					<a href="http://funginstitute.berkeley.edu/people/ken-singer" target="_blank">
+						<div class="about_madeby_content_item_photo"><img class="img_scaled_wh" src="{{STATIC_URL}}assets/thumbnails/ken.png" style="margin-left: 15px;"/></div>
+						<div class="about_ourteam_name">Ken Singer</div>
+						<div class="about_ourteam_position">Managing Director</div>
+						<div class="about_ourteam_description">Ken is a serial entrepreneur, technology executive, university lecturer, and director/advisor to numerous startups in the US and Europe. A 14-year veteran of the mobile industry (enterprise software and digital advertising), Ken has been creating mobile solutions since cellphones first connected to the Internet at a whopping 28 kbps. Since then, he has founded or co-founded five companies in the mobility space.</div>
+					</a>
+				</div>
+
+				<div class="clear"></div>
 			</div>
 			
 		</div>
+
+		<!-- Openings -->
+		<div class="dashboard_profile_item" style="background-color: #f7f5f2;">
+			<div class="dashboard_profile_header">
+
+				<div class="dashboard_profile_header_icon" style="width: 60px; padding: 15px 0px;"><img class="img_scaled" src="{{STATIC_URL}}assets/icons/job_brown.svg" /></div>
+				<div class="dashboard_profile_header_title">Openings</div>
+
+<!-- 				{%if c_editable%}
+				<div id="dashboard_profile_addbox_team" class="dashboard_profile_addbox">
+					<div class="dashboard_profile_addbox_icon"><img class="img_scaled" src="{{STATIC_URL}}assets/icons/add.svg" /></div>
+					<div class="dashboard_profile_addbox_text">Add an Opening</div>
+					<div class="clear"></div>
+				</div>
+				{%endif%} -->
+				<div class="clear"></div>
+
+			</div>
+
+<!-- 			{% if company.get_openings_as_list.count == 0 %}
+				<div class="dashboard_profile_nocontent">This company has not entered any specific job openings. If you are interested in working for this company, please send them a message.</div>
+			{% endif %} -->
+
+			<div class="dashboard_profile_box_container_basic" class="dashboard_profile_box_container">
+
+				<div class="company_basic_box">
+					<div class="company_opening_left_box">
+						<div class="company_opening_pos_title">Software Engineer Intern</div>
+						<div class="company_opening_job_desc">Kloudless is looking for a passionate and experienced Front-End Developer to lead our client-facing application development. To apply, send us your résumé and/or any relevant links (Github, LinkedIn, Dribbble, personal websites, portfolio, etc.) either at work@kloudless.com or by clicking the button below. If you can point us to an application you shipped that we could check out, that would be great!</div>
+					</div>
+					<div class="company_opening_right_box">
+						<div class="company_opening_header">
+							<div class="company_opening_req_logo"><img src="{{STATIC_URL}}/assets/icons/key.svg" class="img_scaled"></div>
+							<div class="company_opening_req_title">Requirements</div>
+						</div>
+						<div class="company_opening_req_list">
+							<div class="company_opening_req_item">
+								<div class="company_opening_req_item_logo"><img src="{{STATIC_URL}}/assets/icons/check_dark.svg" class="img_scaled"></div>
+								<div class="company_opening_req_item_content">Available around 10-15 hours per week</div>
+								<div class="clear"></div>
+								<div class="company_opening_req_item_logo"><img src="{{STATIC_URL}}/assets/icons/check_dark.svg" class="img_scaled"></div>
+								<div class="company_opening_req_item_content">A solid foundation in software development, with strong competencies in data structures, algorithms and software design patterns.</div>
+								<div class="clear"></div>
+							</div>
+						</div>
+					</div>
+					<div class="clear"></div>
+				</div>
+
+				<div class="company_basic_box">
+					<div class="company_opening_left_box">
+						<div class="company_opening_pos_title">Software Engineer Intern</div>
+						<div class="company_opening_job_desc">Kloudless is looking for a passionate and experienced Front-End Developer to lead our client-facing application development. To apply, send us your résumé and/or any relevant links (Github, LinkedIn, Dribbble, personal websites, portfolio, etc.) either at work@kloudless.com or by clicking the button below. If you can point us to an application you shipped that we could check out, that would be great!</div>
+					</div>
+					<div class="company_opening_right_box">
+						<div class="company_opening_header">
+							<div class="company_opening_req_logo"><img src="{{STATIC_URL}}/assets/icons/key.svg" class="img_scaled"></div>
+							<div class="company_opening_req_title">Requirements</div>
+						</div>
+						<div class="company_opening_req_list">
+							<div class="company_opening_req_item">
+								<div class="company_opening_req_item_logo"><img src="{{STATIC_URL}}/assets/icons/check_dark.svg" class="img_scaled"></div>
+								<div class="company_opening_req_item_content">Available around 10-15 hours per week</div>
+								<div class="clear"></div>
+								<div class="company_opening_req_item_logo"><img src="{{STATIC_URL}}/assets/icons/check_dark.svg" class="img_scaled"></div>
+								<div class="company_opening_req_item_content">A solid foundation in software development, with strong competencies in data structures, algorithms and software design patterns.</div>
+								<div class="clear"></div>
+							</div>
+						</div>
+					</div>
+					<div class="clear"></div>
+				</div>
+
+
+			</div>
+
+		</div>	
+
+		<!-- Needs -->
+		<div class="dashboard_profile_item" style="background-color: #edeae5;">
+			<div class="dashboard_profile_header">
+
+				<div class="dashboard_profile_header_icon" style="width: 60px; padding: 15px 0px;"><img class="img_scaled" src="{{STATIC_URL}}assets/icons/team_dark.svg" /></div>
+				<div class="dashboard_profile_header_title">Needs</div>
+
+<!-- 				{%if c_editable%}
+				<div id="dashboard_profile_addbox_team" class="dashboard_profile_addbox">
+					<div class="dashboard_profile_addbox_icon"><img class="img_scaled" src="{{STATIC_URL}}assets/icons/add.svg" /></div>
+					<div class="dashboard_profile_addbox_text">Add an Opening</div>
+					<div class="clear"></div>
+				</div>
+				{%endif%} -->
+				<div class="clear"></div>
+
+			</div>
+
+<!-- 			{% if company.get_openings_as_list.count == 0 %}
+				<div class="dashboard_profile_nocontent">This company has not entered any specific job openings. If you are interested in working for this company, please send them a message.</div>
+			{% endif %} -->
+
+			<div class="dashboard_profile_box_container_basic" class="dashboard_profile_box_container">
+
+				<div class="company_basic_box">
+					<div class="company_needs_inner_box">
+						<div class="company_opening_pos_title">Seed Funding</div>
+						<div class="company_opening_job_desc">Kloudless is looking for a passionate and experienced Front-End Developer to lead our client-facing application development. To apply, send us your résumé and/or any relevant links (Github, LinkedIn, Dribbble, personal websites, portfolio, etc.) either at work@kloudless.com or by clicking the button below. If you can point us to an application you shipped that we could check out, that would be great!</div>
+					</div>
+				</div>
+
+				<div class="company_basic_box">
+					<div class="company_needs_inner_box">
+						<div class="company_opening_pos_title">Mentorship</div>
+						<div class="company_opening_job_desc">Kloudless is looking for a passionate and experienced Front-End Developer to lead our client-facing application development. To apply, send us your résumé and/or any relevant links (Github, LinkedIn, Dribbble, personal websites, portfolio, etc.) either at work@kloudless.com or by clicking the button below. If you can point us to an application you shipped that we could check out, that would be great!</div>
+					</div>
+				</div>
+
+			</div>
+
+		</div>	
+
+		<div class="company_bottom_bar">		
+			<div id="company_bottom_message">Interested in working here, investing, providing mentorship, or learning more? Email kloudless@gmail.com.</div>
+		</div>		
+
 	</div>
 </div>
 {% endblock content %}
